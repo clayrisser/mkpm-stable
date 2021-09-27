@@ -3,7 +3,7 @@
 # File Created: 27-09-2021 17:41:09
 # Author: Clay Risser
 # -----
-# Last Modified: 27-09-2021 18:39:47
+# Last Modified: 27-09-2021 18:44:07
 # Modified By: Clay Risser
 # -----
 # BitSpur Inc (c) Copyright 2021
@@ -83,18 +83,18 @@ ifneq (,$(ARGS))
 		\
 		echo $$ $(MAKE) -C $(PUBLISH_DIR) pack && \
 		echo $$ mkdir -p $$MKPM_NAME && \
-		echo $$ cp $(PUBLISH_DIR)/$$MKPM_NAME.mkpm.tar.gz $$MKPM_NAME/$${MKPM_NAME}.mkpm.tar.gz && \
-		echo $$ $(GIT) add $$MKPM_NAME/$$MKPM_NAME.mkpm.tar.gz && \
-		echo $$ $(GIT) commit $$MKPM_NAME/$$MKPM_NAME.mkpm.tar.gz -m "Publish $$MKPM_NAME version $$MKPM_VERSION" $(NOFAIL) && \
+		echo $$ cp $(PUBLISH_DIR)/$$MKPM_NAME.tar.gz $$MKPM_NAME/$$MKPM_NAME.tar.gz && \
+		echo $$ $(GIT) add $$MKPM_NAME/$$MKPM_NAME.tar.gz && \
+		echo $$ $(GIT) commit $$MKPM_NAME/$$MKPM_NAME.tar.gz -m "Publish $$MKPM_NAME version $$MKPM_VERSION" $(NOFAIL) && \
 		echo $$ $(GIT) tag $$MKPM_NAME/$$MKPM_VERSION && \
 		echo $$ $(GIT) push && \
 		echo $$ $(GIT) push --tags && \
 		\
 		$(RUN) $(MAKE) -C $(PUBLISH_DIR) pack && \
 		$(RUN) mkdir -p $$MKPM_NAME && \
-		$(RUN) cp $(PUBLISH_DIR)/$$MKPM_NAME.mkpm.tar.gz $$MKPM_NAME/$${MKPM_NAME}.mkpm.tar.gz && \
-		$(RUN) $(GIT) add $$MKPM_NAME/$$MKPM_NAME.mkpm.tar.gz && \
-		$(RUN) $(GIT) commit $$MKPM_NAME/$$MKPM_NAME.mkpm.tar.gz -m "Publish $$MKPM_NAME version $$MKPM_VERSION" $(NOFAIL) && \
+		$(RUN) cp $(PUBLISH_DIR)/$$MKPM_NAME.tar.gz $$MKPM_NAME/$$MKPM_NAME.tar.gz && \
+		$(RUN) $(GIT) add $$MKPM_NAME/$$MKPM_NAME.tar.gz && \
+		$(RUN) $(GIT) commit $$MKPM_NAME/$$MKPM_NAME.tar.gz -m "Publish $$MKPM_NAME version $$MKPM_VERSION" $(NOFAIL) && \
 		$(RUN) $(GIT) tag $$MKPM_NAME/$$MKPM_VERSION && \
 		$(RUN) $(GIT) push && \
 		$(RUN) $(GIT) push --tags
