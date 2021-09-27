@@ -3,7 +3,7 @@
 # File Created: 27-09-2021 17:41:09
 # Author: Clay Risser
 # -----
-# Last Modified: 27-09-2021 18:33:42
+# Last Modified: 27-09-2021 18:34:50
 # Modified By: Clay Risser
 # -----
 # BitSpur Inc (c) Copyright 2021
@@ -97,3 +97,10 @@ publish:
 		$(RUN) $(GIT) tag $$MKPM_NAME/$$MKPM_VERSION && \
 		$(RUN) $(GIT) push && \
 		$(RUN) $(GIT) push --tags
+
+.PHONY: clean
+clean:
+	@$(GIT) clean -fXd
+
+.PHONY: purge
+purge: clean
