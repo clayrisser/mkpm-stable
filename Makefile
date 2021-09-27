@@ -3,7 +3,7 @@
 # File Created: 27-09-2021 17:41:09
 # Author: Clay Risser
 # -----
-# Last Modified: 27-09-2021 18:34:50
+# Last Modified: 27-09-2021 18:38:32
 # Modified By: Clay Risser
 # -----
 # BitSpur Inc (c) Copyright 2021
@@ -42,13 +42,13 @@ ifeq ($(PLATFORM),linux)
 ifeq ($(FLAVOR),debian)
 lfs: sudo
 	@sudo apt-get install -y git-lfs
-	@git lfs install
+	@$(GIT) lfs install
 endif
 endif
 ifeq ($(PLATFORM),darwin)
 lfs:
 	@brew install git-lfs
-	@git lfs install
+	@$(GIT) lfs install
 endif
 endif
 ifneq ($(shell cat .gitattributes 2>$(NULL) | $(GREP) -q '*.tar.gz' $(NOOUT) && echo true || echo false),true)
@@ -57,10 +57,11 @@ endif
 
 .PHONY: publish
 publish:
+ifneq (,$(ARGS))
 	@rm -rf $(MKPM_TMP)/info.mk $(NOFAIL)
 	@mkdir -p $(PUBLISH_DIR) && rm -rf $(PUBLISH_DIR) $(NOFAIL)
 	@export MKPM_PACKAGE_REPO=$$(echo $(ARGS) | $(SED) 's|\s.*$$||g') && \
-		git clone $$MKPM_PACKAGE_REPO $(PUBLISH_DIR) && \
+		$(GIT) clone $$MKPM_PACKAGE_REPO $(PUBLISH_DIR) && \
 		\
 		echo "include $(PUBLISH_DIR)/mkpm.mk" > $(MKPM_TMP)/info.mk && \
 		echo ".DEFAULT_GOAL := env" >> $(MKPM_TMP)/info.mk && \
@@ -97,6 +98,7 @@ publish:
 		$(RUN) $(GIT) tag $$MKPM_NAME/$$MKPM_VERSION && \
 		$(RUN) $(GIT) push && \
 		$(RUN) $(GIT) push --tags
+endif
 
 .PHONY: clean
 clean:
