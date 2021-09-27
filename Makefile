@@ -3,7 +3,7 @@
 # File Created: 27-09-2021 17:41:09
 # Author: Clay Risser
 # -----
-# Last Modified: 27-09-2021 18:38:32
+# Last Modified: 27-09-2021 18:39:47
 # Modified By: Clay Risser
 # -----
 # BitSpur Inc (c) Copyright 2021
@@ -31,7 +31,7 @@ DRYRUN ?= false
 ifeq (true,$(DRYRUN))
 	RUN := true
 else
-	RUN := true
+	RUN :=
 endif
 
 .PHONY: lfs
