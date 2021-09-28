@@ -3,7 +3,7 @@
 # File Created: 27-09-2021 17:41:09
 # Author: Clay Risser
 # -----
-# Last Modified: 27-09-2021 19:07:00
+# Last Modified: 27-09-2021 19:15:36
 # Modified By: Clay Risser
 # -----
 # BitSpur Inc (c) Copyright 2021
@@ -21,6 +21,7 @@
 # limitations under the License.
 
 include mkpm.mk
+ifneq (,$(MKPM))
 
 GIT ?= git
 DRYRUN ?= false
@@ -104,3 +105,5 @@ clean:
 
 .PHONY: purge
 purge: clean
+
+endif
