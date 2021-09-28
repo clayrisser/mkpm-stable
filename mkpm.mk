@@ -3,7 +3,7 @@
 # File Created: 27-09-2021 17:41:23
 # Author: Clay Risser
 # -----
-# Last Modified: 27-09-2021 19:42:35
+# Last Modified: 28-09-2021 03:28:44
 # Modified By: Clay Risser
 # -----
 # BitSpur Inc (c) Copyright 2021
@@ -31,15 +31,19 @@ NUMPROC := 1
 ############# MKPM BOOTSTRAP SCRIPT BEGIN #############
 MKPM_BOOTSTRAP := https://bitspur.gitlab.io/community/mkpm/bootstrap.mk
 NULL := /dev/null
-MKDIR_P := mkdir -p
+define mkdir_p
+mkdir -p $1
+endef
 ifeq ($(OS),Windows_NT)
-	MKDIR_P = mkdir
 	NULL = nul
 	SHELL := cmd.exe
+define mkdir_p
+set P=$1 & set P=%P:/=\% & mkdir %P%
+endef
 endif
 -include $(MKPM_PACKAGE_DIR)/.bootstrap.mk
 $(MKPM_PACKAGE_DIR)/.bootstrap.mk:
-	@$(MKDIR_P) $(MKPM_PACKAGE_DIR)
+	@$(call mkdir_p,$(MKPM_PACKAGE_DIR))
 	@cd $(MKPM_PACKAGE_DIR) && \
 		$(shell curl --version >$(NULL) 2>$(NULL) && \
 			echo curl -L -o || \
