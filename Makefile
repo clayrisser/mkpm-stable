@@ -3,7 +3,7 @@
 # File Created: 27-09-2021 17:41:09
 # Author: Clay Risser
 # -----
-# Last Modified: 27-09-2021 18:44:07
+# Last Modified: 27-09-2021 19:07:00
 # Modified By: Clay Risser
 # -----
 # BitSpur Inc (c) Copyright 2021
@@ -22,11 +22,9 @@
 
 include mkpm.mk
 
-FIND ?= find
 GIT ?= git
-MKPM_TMP ?= $(MKPM)/.tmp
-PUBLISH_DIR := $(MKPM_TMP)/publish
 DRYRUN ?= false
+PUBLISH_DIR := $(MKPM_TMP)/publish
 
 ifeq (true,$(DRYRUN))
 	RUN := true
