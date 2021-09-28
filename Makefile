@@ -3,7 +3,7 @@
 # File Created: 27-09-2021 17:41:09
 # Author: Clay Risser
 # -----
-# Last Modified: 27-09-2021 19:15:36
+# Last Modified: 28-09-2021 00:17:45
 # Modified By: Clay Risser
 # -----
 # BitSpur Inc (c) Copyright 2021
@@ -101,9 +101,11 @@ endif
 
 .PHONY: clean
 clean:
-	@$(GIT) clean -fXd
+	@$(GIT) clean -fXd \
+		$(MKPM_GIT_CLEAN_FLAGS)
 
 .PHONY: purge
 purge: clean
+	@$(GIT) clean -fXd
 
 endif
