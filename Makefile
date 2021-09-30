@@ -3,7 +3,7 @@
 # File Created: 27-09-2021 17:41:09
 # Author: Clay Risser
 # -----
-# Last Modified: 28-09-2021 00:17:45
+# Last Modified: 30-09-2021 04:43:31
 # Modified By: Clay Risser
 # -----
 # BitSpur Inc (c) Copyright 2021
@@ -68,33 +68,33 @@ ifneq (,$(ARGS))
 		echo "env:" >> $(MKPM_TMP)/info.mk && \
 		echo '	@echo $$($$(ENV_NAME))' >> $(MKPM_TMP)/info.mk && \
 		\
-		export MKPM_NAME=$$(ENV_NAME=MKPM_NAME make -f $(MKPM_TMP)/info.mk) && \
-		export MKPM_VERSION=$$(ENV_NAME=MKPM_VERSION make -f $(MKPM_TMP)/info.mk) && \
-		export MKPM_DESCRIPTION=$$(ENV_NAME=MKPM_DESCRIPTION make -f $(MKPM_TMP)/info.mk) && \
-		export MKPM_PACKAGES=$$(ENV_NAME=MKPM_PACKAGES make -f $(MKPM_TMP)/info.mk) && \
-		export MKPM_SOURCES=$$(ENV_NAME=MKPM_SOURCES make -f $(MKPM_TMP)/info.mk) && \
+		export MKPM_PKG_NAME=$$(ENV_NAME=MKPM_PKG_NAME make -f $(MKPM_TMP)/info.mk) && \
+		export MKPM_PKG_VERSION=$$(ENV_NAME=MKPM_PKG_VERSION make -f $(MKPM_TMP)/info.mk) && \
+		export MKPM_PKG_DESCRIPTION=$$(ENV_NAME=MKPM_PKG_DESCRIPTION make -f $(MKPM_TMP)/info.mk) && \
+		export MKPM_PKG_SOURCE=$$(ENV_NAME=MKPM_PKG_SOURCE make -f $(MKPM_TMP)/info.mk) && \
+		export MKPM_PKG_AUTHOR=$$(ENV_NAME=MKPM_PKG_AUTHOR make -f $(MKPM_TMP)/info.mk) && \
 		\
-		echo MKPM_NAME: $$MKPM_NAME && \
-		echo MKPM_VERSION: $$MKPM_VERSION && \
-		echo MKPM_DESCRIPTION: $$MKPM_DESCRIPTION && \
-		echo MKPM_PACKAGES: $$MKPM_PACKAGES && \
-		echo MKPM_SOURCES: $$MKPM_SOURCES && \
+		echo MKPM_PKG_NAME: $$MKPM_PKG_NAME && \
+		echo MKPM_PKG_VERSION: $$MKPM_PKG_VERSION && \
+		echo MKPM_PKG_DESCRIPTION: $$MKPM_PKG_DESCRIPTION && \
+		echo MKPM_PKG_SOURCE: $$MKPM_PKG_SOURCE && \
+		echo MKPM_PKG_AUTHOR: $$MKPM_PKG_AUTHOR && \
 		\
 		echo $$ $(MAKE) -C $(PUBLISH_DIR) pack && \
-		echo $$ mkdir -p $$MKPM_NAME && \
-		echo $$ cp $(PUBLISH_DIR)/$$MKPM_NAME.tar.gz $$MKPM_NAME/$$MKPM_NAME.tar.gz && \
-		echo $$ $(GIT) add $$MKPM_NAME/$$MKPM_NAME.tar.gz && \
-		echo $$ $(GIT) commit $$MKPM_NAME/$$MKPM_NAME.tar.gz -m "Publish $$MKPM_NAME version $$MKPM_VERSION" $(NOFAIL) && \
-		echo $$ $(GIT) tag $$MKPM_NAME/$$MKPM_VERSION && \
+		echo $$ mkdir -p $$MKPM_PKG_NAME && \
+		echo $$ cp $(PUBLISH_DIR)/$$MKPM_PKG_NAME.tar.gz $$MKPM_PKG_NAME/$$MKPM_PKG_NAME.tar.gz && \
+		echo $$ $(GIT) add $$MKPM_PKG_NAME/$$MKPM_PKG_NAME.tar.gz && \
+		echo $$ $(GIT) commit $$MKPM_PKG_NAME/$$MKPM_PKG_NAME.tar.gz -m "Publish $$MKPM_PKG_NAME version $$MKPM_PKG_VERSION" $(NOFAIL) && \
+		echo $$ $(GIT) tag $$MKPM_PKG_NAME/$$MKPM_PKG_VERSION && \
 		echo $$ $(GIT) push && \
 		echo $$ $(GIT) push --tags && \
 		\
 		$(RUN) $(MAKE) -C $(PUBLISH_DIR) pack && \
-		$(RUN) mkdir -p $$MKPM_NAME && \
-		$(RUN) cp $(PUBLISH_DIR)/$$MKPM_NAME.tar.gz $$MKPM_NAME/$$MKPM_NAME.tar.gz && \
-		$(RUN) $(GIT) add $$MKPM_NAME/$$MKPM_NAME.tar.gz && \
-		$(RUN) $(GIT) commit $$MKPM_NAME/$$MKPM_NAME.tar.gz -m "Publish $$MKPM_NAME version $$MKPM_VERSION" $(NOFAIL) && \
-		$(RUN) $(GIT) tag $$MKPM_NAME/$$MKPM_VERSION && \
+		$(RUN) mkdir -p $$MKPM_PKG_NAME && \
+		$(RUN) cp $(PUBLISH_DIR)/$$MKPM_PKG_NAME.tar.gz $$MKPM_PKG_NAME/$$MKPM_PKG_NAME.tar.gz && \
+		$(RUN) $(GIT) add $$MKPM_PKG_NAME/$$MKPM_PKG_NAME.tar.gz && \
+		$(RUN) $(GIT) commit $$MKPM_PKG_NAME/$$MKPM_PKG_NAME.tar.gz -m "Publish $$MKPM_PKG_NAME version $$MKPM_PKG_VERSION" $(NOFAIL) && \
+		$(RUN) $(GIT) tag $$MKPM_PKG_NAME/$$MKPM_PKG_VERSION && \
 		$(RUN) $(GIT) push && \
 		$(RUN) $(GIT) push --tags
 endif
