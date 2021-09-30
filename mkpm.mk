@@ -3,7 +3,7 @@
 # File Created: 27-09-2021 17:41:23
 # Author: Clay Risser
 # -----
-# Last Modified: 28-09-2021 03:28:44
+# Last Modified: 30-09-2021 04:38:46
 # Modified By: Clay Risser
 # -----
 # BitSpur Inc (c) Copyright 2021
@@ -36,9 +36,10 @@ mkdir -p $1
 endef
 ifeq ($(OS),Windows_NT)
 	NULL = nul
-	SHELL := cmd.exe
+	SHELL = cmd.exe
+	.SHELLFLAGS = /q /v /c
 define mkdir_p
-set P=$1 & set P=%P:/=\% & mkdir %P%
+cmd.exe /q /v /c "set p=$1 & mkdir !p:/=\! 2>nul || echo >nul"
 endef
 endif
 -include $(MKPM_PACKAGE_DIR)/.bootstrap.mk
