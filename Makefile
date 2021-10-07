@@ -3,7 +3,7 @@
 # File Created: 27-09-2021 17:41:09
 # Author: Clay Risser
 # -----
-# Last Modified: 30-09-2021 04:43:31
+# Last Modified: 07-10-2021 18:24:48
 # Modified By: Clay Risser
 # -----
 # BitSpur Inc (c) Copyright 2021
@@ -80,7 +80,11 @@ ifneq (,$(ARGS))
 		echo MKPM_PKG_SOURCE: $$MKPM_PKG_SOURCE && \
 		echo MKPM_PKG_AUTHOR: $$MKPM_PKG_AUTHOR && \
 		\
-		echo $$ $(MAKE) -C $(PUBLISH_DIR) pack && \
+		unset MKPM && \
+		unset ROOT && \
+		unset PROJECT_ROOT && \
+		$(MAKE) -C $(PUBLISH_DIR) pack && \
+		\
 		echo $$ mkdir -p $$MKPM_PKG_NAME && \
 		echo $$ cp $(PUBLISH_DIR)/$$MKPM_PKG_NAME.tar.gz $$MKPM_PKG_NAME/$$MKPM_PKG_NAME.tar.gz && \
 		echo $$ $(GIT) add $$MKPM_PKG_NAME/$$MKPM_PKG_NAME.tar.gz && \
@@ -89,7 +93,6 @@ ifneq (,$(ARGS))
 		echo $$ $(GIT) push && \
 		echo $$ $(GIT) push --tags && \
 		\
-		$(RUN) $(MAKE) -C $(PUBLISH_DIR) pack && \
 		$(RUN) mkdir -p $$MKPM_PKG_NAME && \
 		$(RUN) cp $(PUBLISH_DIR)/$$MKPM_PKG_NAME.tar.gz $$MKPM_PKG_NAME/$$MKPM_PKG_NAME.tar.gz && \
 		$(RUN) $(GIT) add $$MKPM_PKG_NAME/$$MKPM_PKG_NAME.tar.gz && \
