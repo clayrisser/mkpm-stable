@@ -3,7 +3,7 @@
 # File Created: 27-09-2021 17:41:09
 # Author: Clay Risser
 # -----
-# Last Modified: 07-10-2021 18:24:48
+# Last Modified: 26-11-2021 02:03:42
 # Modified By: Clay Risser
 # -----
 # BitSpur Inc (c) Copyright 2021
@@ -21,7 +21,7 @@
 # limitations under the License.
 
 include mkpm.mk
-ifneq (,$(MKPM))
+ifneq (,$(MKPM_READY))
 
 GIT ?= git
 DRYRUN ?= false
