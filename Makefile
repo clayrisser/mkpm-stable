@@ -3,7 +3,7 @@
 # File Created: 27-09-2021 17:41:09
 # Author: Clay Risser
 # -----
-# Last Modified: 26-11-2021 02:03:42
+# Last Modified: 28-12-2021 01:20:33
 # Modified By: Clay Risser
 # -----
 # BitSpur Inc (c) Copyright 2021
@@ -66,8 +66,8 @@ ifneq (,$(ARGS))
 		echo ".DEFAULT_GOAL := env" >> $(MKPM_TMP)/info.mk && \
 		echo ".PHONY: env" >> $(MKPM_TMP)/info.mk && \
 		echo "env:" >> $(MKPM_TMP)/info.mk && \
-		echo '	@echo $$($$(ENV_NAME))' >> $(MKPM_TMP)/info.mk && \
-		\
+		echo '	-@echo $$($$(ENV_NAME))' >> $(MKPM_TMP)/info.mk && \
+		make -f $(MKPM_TMP)/info.mk && \
 		export MKPM_PKG_NAME=$$(ENV_NAME=MKPM_PKG_NAME make -f $(MKPM_TMP)/info.mk) && \
 		export MKPM_PKG_VERSION=$$(ENV_NAME=MKPM_PKG_VERSION make -f $(MKPM_TMP)/info.mk) && \
 		export MKPM_PKG_DESCRIPTION=$$(ENV_NAME=MKPM_PKG_DESCRIPTION make -f $(MKPM_TMP)/info.mk) && \
